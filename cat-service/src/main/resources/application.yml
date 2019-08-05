@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: my-cat-manager  #应用名称(注册服务时所用的名字)  重要
+  devtools:
+    restart:
+      enabled: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/clouddb01?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false
+    hikari: # springboot 2.0 整合了hikari ,据说这是目前性能最好的java数据库连接池
+      username: root
+      password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update  # 第一次建表create  后面用update，要不然每次重启都会新建表
+    show-sql: true
+#客户端注册进eureka服务列表
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://localhost:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    instance-id: microservicecloud-cat-manager8001
+    prefer-ip-address: true
+server:
+  port: 8001 #访问路径默认显示ip地址
